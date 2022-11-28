@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  BabyWeaningDiary
 //
-//  Created by Shiori on 13/11/2022.
+//  Created by Shiori on 24/11/2022.
 //
 
 import UIKit
