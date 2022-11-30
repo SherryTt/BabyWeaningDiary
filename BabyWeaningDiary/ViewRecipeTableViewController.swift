@@ -10,8 +10,9 @@ import UIKit
 class ViewRecipeTableViewController: UITableViewController {
 
     var recipe : Recipe!
-
-
+    let service = FirestoreRepository()
+    
+    
     @IBOutlet weak var recipeNameLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var recipeImage: UIImageView!
@@ -20,7 +21,14 @@ class ViewRecipeTableViewController: UITableViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var babyImage: UIImageView!
     @IBOutlet weak var commentLabel: UILabel!
+
     @IBOutlet weak var deleteRecipeButton: UIButton!
+    
+    
+ 
+    
+
+    
     
 
     override func viewDidLoad() {
@@ -39,6 +47,23 @@ class ViewRecipeTableViewController: UITableViewController {
         commentLabel.text =  "\(recipe.comments)"
         
     }
+    
+    @IBAction func deleteRecipe(_ sender: Any) {
+        
+        let recipeId = recipeNameLabel.text
+        if recipeId!.isEmpty {
+            print("Empty")
+            return
+        }
+        
+        let recipe = Recipe(documentId: recipeId!)
+        if service.deleteRecipe(recipe: recipe){
+            print("Recipe was deleted")
+        }else{
+            print("Recipe could not be deleted")
+        }
+            }
+    
 
     // MARK: - Table view data source
 /*
@@ -108,6 +133,14 @@ class ViewRecipeTableViewController: UITableViewController {
         if let editRecipeTableVC = segue.destination as? EditRecipeTableViewController{
             editRecipeTableVC.recipe = self.recipe
         }
+       /*
+        if let deleteRecipeTableVC =  segue.destination as? RecipeTableViewController{
+            deleteRecipeTableVC.selectedRecipe = self.recipe
+        }*/
+        
+        
+        
+        
     }
     
 

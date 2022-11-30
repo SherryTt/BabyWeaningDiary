@@ -71,19 +71,20 @@
                                             <rect key="frame" x="30" y="12" width="70" height="70"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="89" id="cy4-45-VlQ"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="jFS-C5-wN6"/>
                                                 <constraint firstAttribute="width" secondItem="8cL-vJ-w7P" secondAttribute="height" multiplier="89:78" id="tkr-T0-vgR"/>
                                             </constraints>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="paW-5v-KL7">
                                             <rect key="frame" x="100" y="23" width="49.5" height="43.5"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKN-yG-ZzD">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKN-yG-ZzD">
                                                     <rect key="frame" x="0.0" y="0.0" width="49.5" height="23"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4N1-Wu-tQ8" userLabel="prepTime Label">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4N1-Wu-tQ8">
                                                     <rect key="frame" x="0.0" y="23" width="49.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -91,13 +92,6 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URB-kO-Ahk">
-                                            <rect key="frame" x="225" y="33" width="0.0" height="0.0"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="tintColor" red="0.90588235859999999" green="0.62745100259999997" blue="0.21960783" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -110,9 +104,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="prepTimeLabel" destination="4N1-Wu-tQ8" id="Z14-cJ-xTg"/>
-                                    <outlet property="recipeImage" destination="8cL-vJ-w7P" id="jhp-Q6-kiz"/>
-                                    <outlet property="recipeNameLabel" destination="KKN-yG-ZzD" id="qLH-oX-f07"/>
+                                    <outlet property="prepTimeLabel" destination="4N1-Wu-tQ8" id="U2B-dT-8Gi"/>
+                                    <outlet property="recipeImage" destination="8cL-vJ-w7P" id="1zb-1s-w7s"/>
+                                    <outlet property="recipeNameLabel" destination="KKN-yG-ZzD" id="CzS-wV-jvP"/>
                                     <segue destination="SmK-Ls-Z8R" kind="show" id="yck-DI-6XA"/>
                                 </connections>
                             </tableViewCell>
@@ -138,7 +132,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9NA-3O-AFY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2791.6030534351144" y="-144.36619718309859"/>
+            <point key="canvasLocation" x="2791.1999999999998" y="-144.3778110944528"/>
         </scene>
         <!--New Recipe-->
         <scene sceneID="OaK-yt-vPf">
@@ -529,6 +523,9 @@
                                                     <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system" title="Delete this recipe" buttonSize="large">
                                                         <color key="baseForegroundColor" systemColor="systemRedColor"/>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="deleteRecipe:" destination="SmK-Ls-Z8R" eventType="touchUpInside" id="O4N-Np-DS2"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -550,7 +547,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="WlQ-hE-A90">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="fww-Du-ob2" kind="show" id="8qM-vj-fgr"/>
+                                <segue destination="aYt-Id-nGc" kind="unwind" unwindAction="unwindToRecipeTableViewController:" id="zo4-nj-9Wk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -558,7 +555,7 @@
                     <connections>
                         <outlet property="babyImage" destination="A8O-gi-9V6" id="7oF-1a-3JF"/>
                         <outlet property="commentLabel" destination="AeZ-x3-n3w" id="qi2-bc-THc"/>
-                        <outlet property="deleteRecipeButton" destination="VBn-HX-gI5" id="hvX-Ri-qRf"/>
+                        <outlet property="deleteRecipeButton" destination="VBn-HX-gI5" id="v5F-Mm-v51"/>
                         <outlet property="descriptionLabel" destination="Mgd-qX-X1o" id="3j9-Xu-VqV"/>
                         <outlet property="favoriteButton" destination="55j-1l-vhj" id="6vY-Nm-qYX"/>
                         <outlet property="ingredientsLabel" destination="RJk-9k-CaG" id="3rA-Lp-nek"/>
@@ -568,6 +565,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qm2-Ap-PK6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="aYt-Id-nGc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3805.5999999999999" y="335.08245877061472"/>
         </scene>

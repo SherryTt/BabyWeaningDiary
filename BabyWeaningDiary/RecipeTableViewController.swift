@@ -66,10 +66,10 @@ class RecipeTableViewController: UITableViewController {
         // Configure the cell...
         let recipe = recipes[indexPath.row]
         
-        //     cell.photoImageView.image = UIImage(named: recipe.photo)
+        cell.recipeImage.image = UIImage(named: recipe.recipePhoto)
         cell.prepTimeLabel.text = recipe.prepTime
         cell.recipeNameLabel.text = recipe.title
-       
+        
         
         return cell
     }
@@ -124,6 +124,7 @@ class RecipeTableViewController: UITableViewController {
         if let viewRecipeTableVC = segue.destination as? ViewRecipeTableViewController {
             viewRecipeTableVC.recipe = selectedRecipe
         }
+   
     }
     
     @IBAction func unwindToRecipeTableViewController(_ unwindSegue: UIStoryboardSegue) {
@@ -136,32 +137,27 @@ class RecipeTableViewController: UITableViewController {
                 print("Recipe Saved")
             }
         }
-      
+    /*
+        if let deleteRecipeTableVC = sourceViewController as? ViewRecipeTableViewController{
+            
+            if service.deleteRecipe(recipe: self.selectedRecipe){
+                print("Recipe Deleted")
+            }
+        }*/
+        
         if let addRecipeTableVC = sourceViewController as? AddRecipeTableViewController{
-
+            
             if service.addRecipe(recipe: self.addNewRecipe){
                 print("Recipe Added")
             }
         }
     }
-    
-    class RecipeCell: UITableViewCell{
-        
-//        @IBOutlet weak var recipeImage: UIImageView!
-        
-        @IBOutlet weak var recipeImage: UIImageView!
+}
 
-        @IBOutlet weak var recipeNameLabel: UILabel!
-        
-        @IBOutlet weak var prepTimeLabel: UILabel!
-        
-        
-        
-//        @IBOutlet weak var recipeNameLabel: UILabel!
-  //      @IBOutlet weak var prepTimeLabel: UILabel!
-            
-//        @IBOutlet weak var recipeNameLabel: UILabel!
-//        @IBOutlet weak var prepTimeLabel: UILabel!
-        
-    }
+class RecipeCell: UITableViewCell{
+    
+    @IBOutlet weak var recipeImage: UIImageView!
+    @IBOutlet weak var recipeNameLabel: UILabel!
+    @IBOutlet weak var prepTimeLabel: UILabel!
+    
 }
