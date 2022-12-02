@@ -7,10 +7,12 @@
 
 import UIKit
 
-class EditRecipeTableViewController: UITableViewController {
+class EditRecipeTableViewController: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     var recipe : Recipe!
     
+    private var storageManager = StorageManager()
+    private var downloadUrl : String = ""
     
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var favoriteButton: UIButton!
@@ -35,72 +37,74 @@ class EditRecipeTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         //favoriteButton.is = recipe.favorite
+        recipeImage.image = UIImage(named: recipe.recipePhoto)
         recipeNameTextField.text = "\(recipe.title)"
         prepTimeTextField.text = "\(recipe.prepTime)"
         ingredientsTextField.text = "\(recipe.ingredients)"
         descriptionTextField.text = "\(recipe.description)"
         commentTextField.text = "\(recipe.comments)"
+        babyImage.image = UIImage(named: recipe.babyPhoto)
         
+        configurePicker()
+    }
+    
+    func configurePicker() {
+        recipeImage.translatesAutoresizingMaskIntoConstraints = false
+        recipeImage.contentMode = .scaleAspectFit
+        recipeImage.isUserInteractionEnabled = true
+        recipeImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectPictureImageView)))
         
     }
-
-    /*
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    
+    @objc
+    func handleSelectPictureImageView(){
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("picker canceled by the user")
+        dismiss(animated: true, completion: nil)
     }
-*/
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print(info)
+        var selectedImageFromPicker : UIImage?
+        if let editedImage = info[.editedImage] as? UIImage{
+            selectedImageFromPicker = editedImage
+        }else if let originalImage = info[.originalImage] as? UIImage{
+            selectedImageFromPicker = originalImage
+        }
+        
+        recipeImage.image = selectedImageFromPicker
+        
+        dismiss(animated: true, completion: nil)
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    
+    func saveRecipeImage() -> String {
+        guard let image = recipeImage.image,
+                let data = image.jpegData(compressionQuality: 0.0) else {
+            return ""
+        }
+        
+        let fileName = "\(recipe.title)-profile.jpg"
+        storageManager.uploadImage(with: data, fileName: fileName, completion: { result in
+            switch result {
+            case .success(let downloadUrl) :
+                print("all good, url : \(downloadUrl) ")
+                self.downloadUrl = downloadUrl
+                
+            case .failure(let error):
+                print("StorageManager error \(error)")
+            }
+        })
+            return self.downloadUrl
     }
-    */
+    
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     
     // MARK: - Navigation
@@ -118,6 +122,9 @@ class EditRecipeTableViewController: UITableViewController {
             recipe.comments = commentTextField.text!
             recipe.lastUpdatedAt = nil
             
+            //save photo in firebase storage & assign the pic url to the recipe object
+            
+            recipe.recipePhoto = saveRecipeImage()
             recipeTableVC.selectedRecipe = recipe
         }
     }

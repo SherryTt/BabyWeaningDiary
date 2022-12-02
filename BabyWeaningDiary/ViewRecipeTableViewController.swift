@@ -39,30 +39,25 @@ class ViewRecipeTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    
+        
+        recipeImage.image = UIImage(named: recipe.recipePhoto)
         recipeNameLabel.text = "\(recipe.title)"
         prepTimeLable.text = "\(recipe.prepTime)"
         ingredientsLabel.text = "\(recipe.ingredients)"
         descriptionLabel.text =  "\(recipe.description)"
         commentLabel.text =  "\(recipe.comments)"
-        
+        babyImage.image = UIImage(named: recipe.babyPhoto)
     }
     
     @IBAction func deleteRecipe(_ sender: Any) {
         
-        let recipeId = recipeNameLabel.text
-        if recipeId!.isEmpty {
-            print("Empty")
-            return
-        }
-        
-        let recipe = Recipe(documentId: recipeId!)
+        let recipe = Recipe(documentId: recipe.id!)
         if service.deleteRecipe(recipe: recipe){
             print("Recipe was deleted")
         }else{
             print("Recipe could not be deleted")
         }
-            }
+    }
     
 
     // MARK: - Table view data source

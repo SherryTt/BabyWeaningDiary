@@ -22,6 +22,8 @@
 		924AB02629212EE900118C9D /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924AB02529212EE900118C9D /* Recipe.swift */; };
 		924AB02829212EF400118C9D /* FirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924AB02729212EF400118C9D /* FirestoreRepository.swift */; };
 		924AB02A2924E44C00118C9D /* RecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924AB0292924E44C00118C9D /* RecipeTableViewController.swift */; };
+		92A1DE7B29385CA1001F2710 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1DE7A29385CA1001F2710 /* StorageManager.swift */; };
+		92A1DE7E29397177001F2710 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 92A1DE7D29397177001F2710 /* FirebaseStorage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,7 @@
 		924AB02529212EE900118C9D /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		924AB02729212EF400118C9D /* FirestoreRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirestoreRepository.swift; sourceTree = "<group>"; };
 		924AB0292924E44C00118C9D /* RecipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewController.swift; sourceTree = "<group>"; };
+		92A1DE7A29385CA1001F2710 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +50,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				924AB02029211A0F00118C9D /* FirebaseAuth in Frameworks */,
+				92A1DE7E29397177001F2710 /* FirebaseStorage in Frameworks */,
 				924AB02229211A0F00118C9D /* FirebaseFirestore in Frameworks */,
 				924AB02429211A0F00118C9D /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -60,6 +64,7 @@
 			children = (
 				924AB007292118DD00118C9D /* BabyWeaningDiary */,
 				924AB006292118DD00118C9D /* Products */,
+				92A1DE7C29397177001F2710 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,6 +87,7 @@
 				924AB00E292118DD00118C9D /* Main.storyboard */,
 				920FB68D292F34A000868CC8 /* ViewRecipeTableViewController.swift */,
 				920FB68F292F34D600868CC8 /* EditRecipeTableViewController.swift */,
+				92A1DE7A29385CA1001F2710 /* StorageManager.swift */,
 				920FB691292F64C600868CC8 /* AddRecipeTableViewController.swift */,
 				924AB0292924E44C00118C9D /* RecipeTableViewController.swift */,
 				924AB011292118DF00118C9D /* Assets.xcassets */,
@@ -89,6 +95,13 @@
 				924AB016292118DF00118C9D /* Info.plist */,
 			);
 			path = BabyWeaningDiary;
+			sourceTree = "<group>";
+		};
+		92A1DE7C29397177001F2710 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -111,6 +124,7 @@
 				924AB01F29211A0F00118C9D /* FirebaseAuth */,
 				924AB02129211A0F00118C9D /* FirebaseFirestore */,
 				924AB02329211A0F00118C9D /* FirebaseFirestoreSwift */,
+				92A1DE7D29397177001F2710 /* FirebaseStorage */,
 			);
 			productName = BabyWeaningDiary;
 			productReference = 924AB005292118DD00118C9D /* BabyWeaningDiary.app */;
@@ -174,6 +188,7 @@
 				924AB02829212EF400118C9D /* FirestoreRepository.swift in Sources */,
 				920FB692292F64C600868CC8 /* AddRecipeTableViewController.swift in Sources */,
 				920FB690292F34D600868CC8 /* EditRecipeTableViewController.swift in Sources */,
+				92A1DE7B29385CA1001F2710 /* StorageManager.swift in Sources */,
 				924AB009292118DD00118C9D /* AppDelegate.swift in Sources */,
 				924AB00B292118DD00118C9D /* SceneDelegate.swift in Sources */,
 				924AB02629212EE900118C9D /* Recipe.swift in Sources */,
@@ -332,6 +347,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -359,6 +375,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -421,6 +438,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 924AB01E29211A0F00118C9D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		92A1DE7D29397177001F2710 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 924AB01E29211A0F00118C9D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
