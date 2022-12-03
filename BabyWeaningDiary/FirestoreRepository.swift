@@ -49,8 +49,6 @@ class FirestoreRepository {
     }
     
     
-
-
     
     /**
             
@@ -67,6 +65,8 @@ class FirestoreRepository {
         return result
     }
     
+    
+    
     func deleteRecipe(recipe: Recipe) -> Bool{
         var result = true
         db.collection("recipes").document(recipe.id!).delete(){ err in
@@ -79,6 +79,8 @@ class FirestoreRepository {
         }
         return result;
     }
+    
+    
     
     func updateRecipe(recipe: Recipe) -> Bool{
         var result = true

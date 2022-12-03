@@ -41,12 +41,4 @@ public class Recipe : Codable{
         self.id = documentId
     }
     
-//    convenience init(documentId : String, firstname: String, lastname: String, email: String, phone: String, photo: String, position: String, favorite: Bool, createdTime: Timestamp? = nil, lastUpdatedAt: Timestamp? = nil){
-//        self.init(firstname: firstname, lastname: lastname, email: email, phone: phone, photo: photo, position: position, favorite: favorite)
-//        self.id = documentId
-//
-//    }
-    
-    
-    
 }

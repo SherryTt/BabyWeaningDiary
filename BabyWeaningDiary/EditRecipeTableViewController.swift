@@ -30,13 +30,6 @@ class EditRecipeTableViewController: UITableViewController,UIImagePickerControll
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        //favoriteButton.is = recipe.favorite
         recipeImage.image = UIImage(named: recipe.recipePhoto)
         recipeNameTextField.text = "\(recipe.title)"
         prepTimeTextField.text = "\(recipe.prepTime)"
@@ -124,7 +117,7 @@ class EditRecipeTableViewController: UITableViewController,UIImagePickerControll
             
             //save photo in firebase storage & assign the pic url to the recipe object
             
-            recipe.recipePhoto = saveRecipeImage()
+          //  recipe.recipePhoto = saveRecipeImage()
             recipeTableVC.selectedRecipe = recipe
         }
     }
