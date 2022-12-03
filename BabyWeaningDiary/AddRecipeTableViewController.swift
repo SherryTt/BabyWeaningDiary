@@ -57,8 +57,7 @@ class AddRecipeTableViewController: UITableViewController {
                                        , description: self.descriptionTextField.text!
                                        , recipePhoto: ""
                                        , babyPhoto: ""
-                                       , comments:self.commentTextField.text!
-                                       , favorite:self.isBeingDismissed)
+                                       , comments:self.commentTextField.text!)
                    
                    addRecipeTableVC.addNewRecipe = recipe
                }

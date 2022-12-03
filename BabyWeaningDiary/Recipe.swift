@@ -19,12 +19,11 @@ public class Recipe : Codable{
     var recipePhoto : String
     var babyPhoto : String
     var comments : String
-    var favorite : Bool
 
     @ServerTimestamp var created : Timestamp?   //If an object being written contains null, it will be replaced with a server-generated timestamp
     @ServerTimestamp var lastUpdatedAt : Timestamp?
 
-    init(title: String, prepTime: String, ingredients: String, description: String, recipePhoto: String, babyPhoto: String, comments: String, favorite:Bool, created: Timestamp? = nil, lastUpdatedAt: Timestamp? = nil)
+    init(title: String, prepTime: String, ingredients: String, description: String, recipePhoto: String, babyPhoto: String, comments: String, created: Timestamp? = nil, lastUpdatedAt: Timestamp? = nil)
     {
         self.title = title
         self.prepTime = prepTime
@@ -32,14 +31,13 @@ public class Recipe : Codable{
         self.description = description
         self.recipePhoto = recipePhoto
         self.babyPhoto = babyPhoto
-        self.favorite = favorite
         self.comments = comments
         self.created = created
         self.lastUpdatedAt = lastUpdatedAt
     }
     
     convenience init(documentId : String) {
-        self.init(title: "", prepTime: "", ingredients: "", description: "", recipePhoto: "", babyPhoto: "", comments: "", favorite: false)
+        self.init(title: "", prepTime: "", ingredients: "", description: "", recipePhoto: "", babyPhoto: "", comments: "")
         self.id = documentId
     }
     
